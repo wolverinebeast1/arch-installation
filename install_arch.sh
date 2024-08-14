@@ -1,4 +1,5 @@
 #!/bin/bash
+#Lets see if it uploads :D
 
 #Autor: WolverineBeast1
 
