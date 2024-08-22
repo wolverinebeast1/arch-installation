@@ -1,6 +1,4 @@
 #!/bin/bash
-#Lets see if it uploads :D
-
 #Autor: WolverineBeast1
 
 # ____            _       _   
@@ -12,20 +10,23 @@
 
 #Please read the script carrefully and with calm
 
-#Arch-install alternative, without doing nothing(sitting on your chair lol)
+#Semi automated arch install script to make the installation easier (:
 
-#This is only a BASIC installation (without desktop enviroments and fancy configurations)
 
-#boring configuration of the system
+#Symbolic link of the timezone
 ln -sf /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-
+#Sets up the clock
+timedatectl set-ntp true
+#Syncs the clock
 hwclock --systohc
 
+#Uncomments the line 171 which is en_US.UTF-8 
 sed -i '171s/.//' /etc/locale.gen
 
+#Generates the locale 
 locale-gen
 
-#Generating US locale , if u re not english than learn it (:
+#Redirects the the output to /etc/locale.conf 
 echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 
@@ -34,11 +35,15 @@ echo "LANG=en_US.UTF-8" >> /etc/locale.conf
 
 #Spanish keyboard
 echo "KEYMAP=es" >> /etc/vconsole.conf
+#Us keyboard
+# echo "KEYMAP=us" >> /etc/vconsole.conf
 
 #Variable that stores your hostname
+read -p 'Type the of the hostname: ' hostname_var
 read -s -p 'Type the of the hostname: ' hostname_var
-
 echo "$hostname_var" >> /etc/hostname
+
+#Redirecting the outputs to the config files of hosts
 
 echo "127.0.0.1 localhost" >> /etc/hosts
 
@@ -51,15 +56,15 @@ read -s -p 'Type the password for your root user: ' root_passwd
 
 echo root:$root_passwd | chpasswd
 
-#install the packages
+#install the packages 
+pacman -S grub efibootmgr networkmanager pulseaudio dialog mtools dosfstools os-prober base base-devel firefox kitty neovim htop neofetch sddm lsd bat i3 i3lock polybar xclip xscreensaver ttf-jetbrains-mono tldr lxappearance unzip zip tar maim code zoxide rofi rofi-emoji nemo nitrogen
 
-pacman -S grub efibootmgr networkmanager pulseaudio dialog mtools dosfstools os-prober base base-devel firefox kitty neovim htop neofetch #sddm 
-
+#NOTE: If you dont have any card you don't need to install nothing
 
 #install nvidia drivers
 #pacman -S --noconfirm nvidia nvidia-utils nvidia-settings
 
-#if you dont like nvidia , install amd drivers xd
+#install amd drivers
 
 #pacman -S --noconfirm xf86-video-amdgpu
 
@@ -74,7 +79,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 #enable services
 systemctl enable NetworkManager
-#systemctl enable sddm
+systemctl enable sddm
 setterm --foreground white
 #Name of the user
 read -p 'Type your username ' user_name
@@ -82,12 +87,12 @@ useradd -m $user_name
 
 #Password for the new user
 read -s -p 'Type the password for your new user: ' user_passwd
-echo wolverine:$user_passwd | chpasswd
+echo "$user_name:$user_passwd" | chpasswd
 
 #Adding root permissions for the new users
 echo "$user_name ALL=(ALL) ALL" >> /etc/sudoers.d/$user_name
 
 #Final message
 setterm --foreground green
-printf "\nYou are done mate , you can reboot\n"
+printf "\nYou are done mate you can reboot\n"
 setterm --foreground white
