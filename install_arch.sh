@@ -39,8 +39,8 @@ echo "KEYMAP=es" >> /etc/vconsole.conf
 # echo "KEYMAP=us" >> /etc/vconsole.conf
 
 #Variable that stores your hostname
-read -p 'Type the of the hostname: ' hostname_var
-read -s -p 'Type the of the hostname: ' hostname_var
+read -p -r 'Type the of the hostname: ' hostname_var
+read -s -r 'Type the of the hostname: ' hostname_var
 echo "$hostname_var" >> /etc/hostname
 
 #Redirecting the outputs to the config files of hosts
