@@ -57,7 +57,7 @@ read -s -p 'Type the password for your root user: ' root_passwd
 echo root:$root_passwd | chpasswd
 
 #install the packages 
-pacman -S grub efibootmgr networkmanager pulseaudio dialog mtools dosfstools os-prober base base-devel firefox kitty neovim htop neofetch sddm lsd bat i3 i3lock polybar xclip xscreensaver ttf-jetbrains-mono tldr lxappearance unzip zip tar maim code zoxide rofi rofi-emoji nemo nitrogen
+pacman -S grub efibootmgr networkmanager pulseaudio dialog mtools dosfstools os-prober base base-devel firefox kitty neovim htop neofetch sddm lsd bat i3 i3lock polybar xclip xscreensaver ttf-jetbrains-mono tldr lxappearance unzip zip tar maim code zoxide rofi rofi-emoji nemo nitrogen npm
 
 #NOTE: If you dont have any card you don't need to install nothing
 
@@ -72,7 +72,7 @@ pacman -S grub efibootmgr networkmanager pulseaudio dialog mtools dosfstools os-
 #grub installation
 setterm --foreground magenta
 #if you mounted the partition at /boot/efi , CHANGE THIS COMMAND TO -> "grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB"
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
+grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=GRUB
 
 #generating grub-config
 grub-mkconfig -o /boot/grub/grub.cfg
