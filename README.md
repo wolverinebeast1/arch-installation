@@ -93,9 +93,9 @@ git clone https://github.com/wolverinebeast1/arch-installation
 #Change directory
 cd arch-installation/
 #Give permissions
-chmod +x install.sh
+chmod +x install_arch.sh
 #Run the installation script
-./install.sh
+./install_arch.sh
 ```
 
 
