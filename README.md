@@ -3,6 +3,7 @@
 
 This file contains the command sequence needed to install the base Arch Linux. The approach is suitable for those who are installing arch linux
 in `VirtualBox` but it also works well if you are installing in on hardware.
+Be aware that this is the very first version of the script and it installs the basic system 
 
 ## Table of Contents
 - [Keyboard Setup](#keyboard-setup)
